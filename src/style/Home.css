@@ -1,0 +1,192 @@
+/* Home.css */
+
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  transition: background 0.5s ease-in-out;
+  color: white;
+  padding: 20px;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-button {
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.hero-button:hover {
+  transform: scale(1.05);
+}
+
+/* Visualizador */
+.visualizer {
+  margin-top: 20px;
+}
+
+.visualizer-bar {
+  width: 5px;
+  height: 50px;
+  background: white;
+  margin: 0 2px;
+  animation: pulse 0.8s infinite ease-in-out;
+  display: inline-block;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.5);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+/* Fondos dinámicos */
+.hero.morning {
+  background: url("/path-to-morning-image.jpg") no-repeat center/cover;
+}
+
+.hero.afternoon {
+  background: url("/path-to-afternoon-image.jpg") no-repeat center/cover;
+}
+
+.hero.night {
+  background: url("/path-to-night-image.jpg") no-repeat center/cover;
+}
+
+.hero.morning-program {
+  background: linear-gradient(to right, #ff9a9e, #fad0c4);
+}
+
+.hero.afternoon-program {
+  background: linear-gradient(to right, #a8edea, #fed6e3);
+}
+
+.hero.night-program {
+  background: linear-gradient(to right, #434343, #000000);
+}
+
+/*! About Section */
+.about-section {
+  padding: 40px 20px;
+  background-color: #f4f4f4;
+  text-align: center;
+  color: #333;
+}
+
+.about-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.about-section p {
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/*! Program List */
+
+.program-list {
+  padding: 40px 20px;
+  background-color: #fff;
+  text-align: center;
+  color: #333;
+}
+
+.program-list h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.program-list ul {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.program-item {
+  background: linear-gradient(to right, #ff9a9e, #fad0c4);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+.program-item h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.program-item p {
+  font-size: 1rem;
+}
+
+/*! News Section */
+.news-section {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+  color: #333;
+}
+
+.news-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.news-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.news-item {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  text-align: left;
+}
+
+.news-item h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.news-item p {
+  font-size: 0.9rem;
+  color: #555;
+}
