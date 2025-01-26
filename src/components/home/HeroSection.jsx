@@ -33,11 +33,15 @@ const HeroSection = () => {
         <p>
           ¡Escucha los mejores éxitos y programas en vivo las 24 horas del día!
         </p>
-        <button className="hero-button">Escuchar Ahora</button>
-        <div className="visualizer">
-          {[...Array(10)].map((_, i) => (
-            <span key={i} className="visualizer-bar" />
-          ))}
+        {/* El reproductor de radio en lugar del botón y las ondas */}
+        <div className="radio-player">
+          <iframe
+            src="https://player.gmpro.top/player-home-page/7045"
+            frameBorder="0"
+            width="100%"
+            height="465"
+            title="Radio Player"
+          ></iframe>
         </div>
       </div>
     </section>

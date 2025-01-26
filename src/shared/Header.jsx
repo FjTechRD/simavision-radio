@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react";
+import HeaderMobile from "../components/shared/HeaderMobile";
+import HeaderDesktop from "../components/shared/HeaderDesktop";
 
 const Header = () => {
-  return (
-    <div>Header</div>
-  )
-}
+  const isMobile = window.innerWidth < 768;
 
-export default Header
+  return (
+    <div>
+      {isMobile ? <HeaderMobile /> : <HeaderDesktop />}
+      {/* Aquí van las rutas y el contenido */}
+    </div>
+  );
+};
+
+export default Header;

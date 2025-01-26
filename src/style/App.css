@@ -1,0 +1,27 @@
+.floating-player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 25%;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.player-container {
+  width: 90%;
+  max-width: 1200px;
+  margin-bottom: 10px;
+}
+
+.ticker-container {
+  width: 90%;
+  max-width: 1200px;
+}
+
+iframe {
+  border-radius: 10px; /* Bordes redondeados */
+}

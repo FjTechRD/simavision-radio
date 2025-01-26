@@ -1,96 +1,93 @@
 /* Home.css */
 
+/* Fondo degradado según la hora del día o el programa */
 .hero {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  color: #ffffff;
   text-align: center;
-  background-size: cover;
-  background-position: center;
-  transition: background 0.5s ease-in-out;
-  color: white;
-  padding: 20px;
+  padding: 60px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  transition: background-color 0.5s ease;
 }
 
-.hero-content {
-  max-width: 600px;
-}
-
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
-}
-
-.hero-button {
-  background-color: white;
-  color: black;
-  padding: 10px 20px;
-  border-radius: 20px;
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.hero-button:hover {
-  transform: scale(1.05);
-}
-
-/* Visualizador */
-.visualizer {
-  margin-top: 20px;
-}
-
-.visualizer-bar {
-  width: 5px;
-  height: 50px;
-  background: white;
-  margin: 0 2px;
-  animation: pulse 0.8s infinite ease-in-out;
-  display: inline-block;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scaleY(1);
-  }
-  50% {
-    transform: scaleY(1.5);
-  }
-  100% {
-    transform: scaleY(1);
-  }
-}
-
-/* Fondos dinámicos */
 .hero.morning {
-  background: url("/path-to-morning-image.jpg") no-repeat center/cover;
+  background: linear-gradient(
+    to right,
+    #ffb74d,
+    #ff9800
+  ); /* Fondo para la mañana */
 }
 
 .hero.afternoon {
-  background: url("/path-to-afternoon-image.jpg") no-repeat center/cover;
+  background: linear-gradient(
+    to right,
+    #00bcd4,
+    #0288d1
+  ); /* Fondo para la tarde */
 }
 
 .hero.night {
-  background: url("/path-to-night-image.jpg") no-repeat center/cover;
+  background: linear-gradient(
+    to right,
+    #673ab7,
+    #3f51b5
+  ); /* Fondo para la noche */
 }
 
 .hero.morning-program {
-  background: linear-gradient(to right, #ff9a9e, #fad0c4);
+  background: linear-gradient(
+    to right,
+    #ffeb3b,
+    #ff9800
+  ); /* Fondo específico para "Morning Beats" */
 }
 
 .hero.afternoon-program {
-  background: linear-gradient(to right, #a8edea, #fed6e3);
+  background: linear-gradient(
+    to right,
+    #00bcd4,
+    #4caf50
+  ); /* Fondo específico para "Afternoon Chill" */
 }
 
 .hero.night-program {
-  background: linear-gradient(to right, #434343, #000000);
+  background: linear-gradient(
+    to right,
+    #3f51b5,
+    #673ab7
+  ); /* Fondo específico para "Night Vibes" */
+}
+
+/* Estilo del contenido en la Hero Section */
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  color: white;
+}
+
+.hero-content h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.radio-player {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.radio-player iframe {
+  width: 100%;
+  border: none;
 }
 
 /*! About Section */
@@ -153,40 +150,105 @@
 }
 
 /*! News Section */
+/* Estilos generales de la News Section */
 .news-section {
-  padding: 40px 20px;
+  padding: 40px 20px; /* Aumentamos el padding en escritorio para dar más espacio */
   background-color: #f9f9f9;
+  border-radius: 8px;
+  margin: 40px 0; /* Un poco más de separación entre secciones */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.news-section h2 {
+  font-size: 32px; /* Aumentamos el tamaño del título para escritorio */
+  margin-bottom: 30px;
   text-align: center;
   color: #333;
 }
 
-.news-section h2 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
+/* Contenedor de las noticias */
+.news-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas en escritorio */
+  gap: 30px; /* Espacio entre las noticias */
+  max-width: 1200px;
+  margin: 0 auto; /* Centrar la cuadrícula */
 }
 
-.news-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
+/* Estilo de cada noticia */
 .news-item {
-  background: white;
+  display: flex;
+  flex-direction: column;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 300px;
-  text-align: left;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden; /* Para asegurarnos que las imágenes no se desborden */
+}
+
+.news-item:hover {
+  transform: translateY(-10px); /* Le da un pequeño movimiento hacia arriba */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.news-item img.news-image {
+  width: 100%;
+  height: 200px; /* Fijamos una altura para las imágenes */
+  object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
 .news-item h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  font-size: 20px;
+  color: #0077b6;
+  margin-bottom: 10px;
 }
 
 .news-item p {
-  font-size: 0.9rem;
-  color: #555;
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.news-item a {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #0077b6;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.news-item a:hover {
+  text-decoration: underline;
+}
+
+/* Estilos para el loading y error */
+.loading,
+.error {
+  text-align: center;
+  font-size: 18px;
+  color: #ff4d4d;
+}
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 768px) {
+  .news-list {
+    grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+  }
+
+  .news-section h2 {
+    font-size: 24px; /* Título más pequeño en pantallas pequeñas */
+  }
+
+  .news-item {
+    padding: 15px; /* Menos padding en móviles */
+  }
+
+  .news-item img.news-image {
+    height: 150px; /* Menor altura de imagen en pantallas pequeñas */
+  }
 }
