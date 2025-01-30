@@ -7,6 +7,12 @@ import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
 import Header from "./shared/Header";
 import Footer from "./shared/Footer";
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
+import News from "./pages/News";
+import PrivacyPolicy from "./pages/PrivaciPolicy";
+import Faqs from "./pages/Faqs";
+import TermnsAndConditions from "./pages/TermnsAndConditions";
 
 function App() {
   return (
@@ -18,6 +24,13 @@ function App() {
         <Route path="/podcast" element={<PodCast />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/news"element={<News/>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
+        <Route path="/faqs" element={<Faqs/>}/>
+        <Route path="/terms" element={<TermnsAndConditions/>}/>
+        
       </Routes>
       <Footer />
     </>
