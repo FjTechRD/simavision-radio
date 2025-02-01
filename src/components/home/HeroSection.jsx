@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Chat from "../Chat";
 
 const HeroSection = () => {
   const [background, setBackground] = useState("");
@@ -34,14 +35,18 @@ const HeroSection = () => {
           ¡Escucha los mejores éxitos y programas en vivo las 24 horas del día!
         </p>
         {/* El reproductor de radio en lugar del botón y las ondas */}
-        <div className="radio-player">
-          <iframe
-            src="https://player.gmpro.top/player-home-page/7045"
-            frameBorder="0"
-            width="100%"
-            height="465"
-            title="Radio Player"
-          ></iframe>
+        <div className="hero-media">
+            <div className="radio-player">
+              <iframe
+                src="https://player.gmpro.top/player-home-page/7045"
+                frameBorder="0"
+                width="100%"
+                height="465"
+                title="Radio Player"
+              ></iframe>
+            </div>
+            <div className="chat-wrapper"> <Chat /></div>
+         
         </div>
       </div>
     </section>

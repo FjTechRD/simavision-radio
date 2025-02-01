@@ -10,13 +10,13 @@ import AuthProvider from "./components/auth/AuthContext.jsx"
 createRoot(document.getElementById('root')).render(
   
   <StrictMode>
-    <Provider store={store}>
     <AuthProvider>
+    <Provider store={store}>
       <HashRouter>
         <App />
       </HashRouter>
-    </AuthProvider>
     </Provider>
+    </AuthProvider>
   </StrictMode>,
 
 )

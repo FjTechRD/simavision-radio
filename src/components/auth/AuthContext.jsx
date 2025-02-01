@@ -1,14 +1,21 @@
 import { createContext, useState, useEffect } from "react";
 
-export const AuthContext = createContext(null); // ✅ Evitar undefined
+// Crear los contextos
+export const AuthContext = createContext({});
+export const UserContext = createContext({});
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
-    return JSON.parse(localStorage.getItem("user")) || null;
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
   });
 
   useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(user));
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("user");
+    }
   }, [user]);
 
   const login = async (email, password) => {
@@ -38,9 +45,11 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
+      <UserContext.Provider value={user || {}}> {/* 🔥 Siempre tiene un valor */}
+        {children}
+      </UserContext.Provider>
     </AuthContext.Provider>
   );
 };
 
-export default AuthProvider;
+export default AuthProvider ;

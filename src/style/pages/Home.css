@@ -9,6 +9,15 @@
   border-radius: 8px;
   margin-bottom: 20px;
   transition: background-color 0.5s ease;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
 .hero.morning {
@@ -169,7 +178,7 @@
 /* Contenedor de las noticias */
 .news-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columnas en escritorio */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));  /* 3 columnas en escritorio */
   gap: 30px; /* Espacio entre las noticias */
   max-width: 1200px;
   margin: 0 auto; /* Centrar la cuadrícula */
@@ -252,3 +261,4 @@
     height: 150px; /* Menor altura de imagen en pantallas pequeñas */
   }
 }
+
