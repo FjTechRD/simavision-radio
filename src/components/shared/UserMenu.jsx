@@ -38,8 +38,12 @@ const UserMenu = () => {
         <div className="user-dropdown">
           {!user ? (
             <>
-              <Link className="user-option" to="/login" onClick={closeMenu}>Iniciar Sesión</Link>
-              <Link className="user-option" to="/register" onClick={closeMenu}>Registrarse</Link>
+              <Link className="user-option" to="/login" onClick={closeMenu}>
+                Iniciar Sesión
+              </Link>
+              <Link className="user-option" to="/register" onClick={closeMenu}>
+                Registrarse
+              </Link>
             </>
           ) : (
             <button onClick={logout}>Cerrar Sesión</button>

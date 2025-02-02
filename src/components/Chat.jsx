@@ -1,20 +1,20 @@
-import React, { useState, useEffect, useContext } from "react";
-import { UserContext } from "../components/auth/AuthContext"; // Asegúrate de tener un contexto de usuario
-import { io } from "socket.io-client";
+import React, { useState, useEffect, useContext, useRef } from "react";
+import { AuthContext, UserContext } from "../components/auth/AuthContext"; // Asegúrate de importar correctamente el contexto
+import { socket } from "../utils/socket"; // Importa la conexión de sockets desde utils
 import "../style/components/Chat.css";
-
-const socket = io("http://localhost:5050"); // Cambia esto cuando hagas deploy
 
 const Chat = () => {
   const { user } = useContext(UserContext);
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    // Cargar mensajes al inicio
-    fetch("http://localhost:5050/api/chat")
+    // Cargar mensajes iniciales desde el backend
+    fetch(`${import.meta.env.VITE_API_URL}/api/chat`)
       .then((res) => res.json())
-      .then((data) => setMessages(data));
+      .then((data) => setMessages(data))
+      .catch((err) => console.error("Error cargando mensajes:", err));
 
     // Escuchar nuevos mensajes en tiempo real
     socket.on("receiveMessage", (message) => {
@@ -25,6 +25,11 @@ const Chat = () => {
       socket.off("receiveMessage");
     };
   }, []);
+
+  useEffect(() => {
+    // Auto-scroll a los nuevos mensajes
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -48,6 +53,7 @@ const Chat = () => {
             <strong>{msg.user}</strong>: {msg.text}
           </div>
         ))}
+        <div ref={messagesEndRef} /> {/* Para auto-scroll */}
       </div>
       {user ? (
         <form onSubmit={sendMessage} className="chat-form">

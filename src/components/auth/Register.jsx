@@ -1,35 +1,24 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { register } from "../../services/authService"; // Importa la función desde authService.js
 import "../../style/auth.css";
-import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(""); // Estado para manejar errores
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setError(""); // Limpiar errores previos
 
-    try {
-      const response = await fetch("http://localhost:5050/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, email, password }),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        alert("Registro exitoso. ¡Ahora puedes iniciar sesión!");
-        navigate("/login")
-      } else {
-        alert(data.message || "Error al registrar");
-      }
-    } catch (error) {
-      console.error("Error en el registro:", error);
+    const result = await register(username, email, password);
+    if (result.success) {
+      navigate("/login");
+    } else {
+      setError(result.message); // Muestra el mensaje de error en la UI
     }
   };
 
@@ -58,9 +47,13 @@ const Register = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        {error && <p className="error-message">{error}</p>}{" "}
+        {/* Muestra errores */}
         <button type="submit">Registrarse</button>
       </form>
-      <p>Ya tienes una cuenta?<Link to="/login">Inicia Sesión</Link></p>
+      <p>
+        Ya tienes una cuenta? <Link to="/login">Inicia Sesión</Link>
+      </p>
     </div>
   );
 };
