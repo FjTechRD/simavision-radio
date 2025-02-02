@@ -4,7 +4,8 @@ import { createContext, useState, useEffect } from "react";
 export const AuthContext = createContext({});
 export const UserContext = createContext({});
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL =
+  process.env.VITE_API_URL || "https://simavision-radio-backend.onrender.com"; // Valor por defecto
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {

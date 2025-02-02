@@ -1,4 +1,5 @@
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL =
+  process.env.VITE_API_URL || "https://simavision-radio-backend.onrender.com"; // Valor por defecto
 
 export const login = async (email, password) => {
   try {
