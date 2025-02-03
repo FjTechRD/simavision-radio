@@ -16,10 +16,14 @@ const Login = () => {
     setError(""); // Limpiar errores previos
 
     const result = await login(email, password);
-    if (result.user) {
-      setUser(result.user);
+
+    if (result.success) {
+      console.log("Inicio de sesión exitoso:", result.user);
+      setUser(result.user); // Guarda el usuario en el contexto
+      navigate("/"); // Redirige a la página de inicio
     } else {
-      console.error("Error: El usuario no se estableció correctamente.");
+      console.error("Error al iniciar sesión:", result.message);
+      setError(result.message); // Muestra el mensaje de error
     }
   };
 

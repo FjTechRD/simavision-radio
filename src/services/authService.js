@@ -22,7 +22,11 @@ export const login = async (email, password) => {
       localStorage.setItem("token", data.token);
       return {
         success: true,
-        user: { id: data._id, username: data.username, email: data.email },
+        user: {
+          id: data._id || "", // Evita undefined
+          username: data.username || "Usuario",
+          email: data.email || "",
+        },
       };
     } else {
       return { success: false, message: data.message || "Error desconocido" };
