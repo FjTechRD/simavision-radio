@@ -20,7 +20,10 @@ export const login = async (email, password) => {
 
     if (response.ok) {
       localStorage.setItem("token", data.token);
-      return { success: true, user: data.user };
+      return {
+        success: true,
+        user: { id: data._id, username: data.username, email: data.email },
+      };
     } else {
       return { success: false, message: data.message || "Error desconocido" };
     }

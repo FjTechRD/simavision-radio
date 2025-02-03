@@ -16,11 +16,10 @@ const Login = () => {
     setError(""); // Limpiar errores previos
 
     const result = await login(email, password);
-    if (result.success) {
-      setUser(result.user); // Actualiza el contexto con la información del usuario
-      navigate("/");
+    if (result.user) {
+      setUser(result.user);
     } else {
-      setError(result.message); // Muestra el mensaje de error en la UI
+      console.error("Error: El usuario no se estableció correctamente.");
     }
   };
 
