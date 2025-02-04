@@ -23,14 +23,16 @@ const AuthProvider = ({ children }) => {
       setUser(null);
       return;
     }
-
+  
     try {
       const response = await fetch(`${API_URL}/api/auth/me`, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });
-
+  
       const data = await response.json();
+      console.log("Respuesta de /api/auth/me:", data); // <-- Agrega este log
+  
       if (response.ok) {
         setUser(data.user);
       } else {
@@ -41,7 +43,7 @@ const AuthProvider = ({ children }) => {
       logout();
     }
   };
-
+  
   const login = async (email, password) => {
     try {
       const response = await fetch(`${API_URL}/api/auth/login`, {
@@ -49,9 +51,15 @@ const AuthProvider = ({ children }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
-
+  
       const data = await response.json();
+      console.log("Respuesta del servidor:", data); // <-- Agrega este log
+  
       if (response.ok) {
+        if (!data.user) {
+          console.error("Error: la respuesta no contiene 'user'");
+          return;
+        }
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
         setUser(data.user);
@@ -62,21 +70,17 @@ const AuthProvider = ({ children }) => {
       console.error("Error al iniciar sesión", error);
     }
   };
+  
 
-  const logout = async () => {
-    try {
-      await fetch(`${API_URL}/api/auth/logout`, { method: "POST" });
-    } catch (error) {
-      console.error("Error al cerrar sesión", error);
-    }
-
+  const logout = () => {
     setUser(null);
     localStorage.removeItem("user");
     localStorage.removeItem("token");
   };
+  
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, setUser, login, logout }}>
       <UserContext.Provider value={user || {}}>{children}</UserContext.Provider>
     </AuthContext.Provider>
   );
